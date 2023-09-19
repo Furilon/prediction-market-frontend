@@ -7,6 +7,25 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <MarketFullCard
+        id={12456}
+        price={45}
+        question="Will the price of Bitcoin be above $100,000 on December 31, 2021?"
+        authorName="John Doe"
+        // avatar={<Avatar.Icon size={24} icon="account" />}
+        numberOfTraders={100}
+        numberOfComments={10}
+      />
+      <MarketFullCard
+        id={223}
+        price={45}
+        question="Will the price of Bitcoin be above $100,000 on December 31, 2021?"
+        authorName="John Doe"
+        // avatar={<Avatar.Icon size={24} icon="account" />}
+        numberOfTraders={100}
+        numberOfComments={10}
+      />
+      <MarketFullCard
+        id={1}
         price={45}
         question="Will the price of Bitcoin be above $100,000 on December 31, 2021?"
         authorName="John Doe"

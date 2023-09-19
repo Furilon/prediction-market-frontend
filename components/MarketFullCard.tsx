@@ -4,7 +4,7 @@ import { router } from "expo-router";
 
 export default function MarketFullCard(props: MarketFullCardProps) {
   return (
-    <Card onPress={() => router.push("/market?id=12345")}>
+    <Card onPress={() => router.push(`/market?id=${props.id}`)}>
       <Card.Title
         title={props.question}
         subtitle={props.authorName}
