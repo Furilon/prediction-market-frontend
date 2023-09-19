@@ -17,21 +17,21 @@ export default function Home() {
       />
       <MarketFullCard
         id={223}
-        price={45}
-        question="Will the price of Bitcoin be above $100,000 on December 31, 2021?"
-        authorName="John Doe"
+        price={99}
+        question="Will Joe Biden be president on January 1, 2022?"
+        authorName="Nikita Medvedev"
         // avatar={<Avatar.Icon size={24} icon="account" />}
-        numberOfTraders={100}
-        numberOfComments={10}
+        numberOfTraders={1}
+        numberOfComments={22}
       />
       <MarketFullCard
         id={1}
-        price={45}
-        question="Will the price of Bitcoin be above $100,000 on December 31, 2021?"
-        authorName="John Doe"
+        price={2}
+        question="Will he propose to me by 2025?"
+        authorName="Polina Medvedeva"
         // avatar={<Avatar.Icon size={24} icon="account" />}
-        numberOfTraders={100}
-        numberOfComments={10}
+        numberOfTraders={1234}
+        numberOfComments={24}
       />
     </View>
   );
