@@ -1,9 +1,10 @@
 import { Text, Card, Button, Avatar } from "react-native-paper";
 import { MarketFullCardProps } from "../types/markets";
+import { router } from "expo-router";
 
 export default function MarketFullCard(props: MarketFullCardProps) {
   return (
-    <Card>
+    <Card onPress={() => router.push("/market?id=12345")}>
       <Card.Title
         title={props.question}
         subtitle={props.authorName}

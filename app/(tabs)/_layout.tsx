@@ -45,6 +45,12 @@ export default function TabLayout() {
           tabBarIcon: () => <TabBarIcon name="user-o" />,
         }}
       />
+      <Tabs.Screen
+        name="market"
+        options={{
+          href: null,
+        }}
+      />
     </Tabs>
   );
 }
