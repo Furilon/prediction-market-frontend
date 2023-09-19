@@ -1,11 +1,11 @@
 import { StyleSheet } from "react-native";
 import { View, Text } from "react-native";
 import MarketFullCard from "../../components/MarketFullCard";
-import { Avatar } from "react-native-paper";
+import Constants from "expo-constants";
 
 export default function Home() {
   return (
-    <View>
+    <View style={styles.container}>
       <MarketFullCard
         price={45}
         question="Will the price of Bitcoin be above $100,000 on December 31, 2021?"
@@ -17,3 +17,9 @@ export default function Home() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: Constants.statusBarHeight + 3,
+  },
+});
