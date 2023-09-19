@@ -1,10 +1,10 @@
 import { StyleSheet } from "react-native";
 import { View, Text } from "react-native";
 
-export default function Home() {
+export default function Profile() {
   return (
     <View>
-      <Text>Home page</Text>
+      <Text>Profile</Text>
     </View>
   );
 }
