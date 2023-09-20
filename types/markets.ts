@@ -20,7 +20,7 @@ export type MarketPageViewProps = {
   numberOfTraders: number;
   description: string;
   comments: Comment[];
-  trades: string[];
+  trades: Trade[];
   positions: TradePosition[];
 };
 
@@ -35,6 +35,13 @@ export enum TradePositionType {
   YES,
   NO,
 }
+
+export type Trade = {
+  // avatar: Avatar.Icon;
+  traderName: string;
+  // This is gonna have to be much more complex than this
+  trade: string;
+};
 
 export type Comment = {
   // avatar: Avatar.Icon;

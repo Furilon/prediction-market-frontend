@@ -49,8 +49,14 @@ const mockProps: MarketPageViewProps = {
     },
   ],
   trades: [
-    "traded 30 shares of YES for 0.30",
-    "traded 10 shares of NO for 0.12",
+    {
+      traderName: "Mykyta",
+      trade: "traded 30 shares of YES for 0.30",
+    },
+    {
+      traderName: "No Name Bitch",
+      trade: "traded 10 shares of NO for 0.12",
+    },
   ],
   positions: [
     {
@@ -169,9 +175,23 @@ export default function MarketView() {
         {value === "trades" && (
           <View>
             {mockProps.trades.map((trade, i) => (
-              <View key={i} style={{ flexDirection: "row" }}>
-                <Avatar.Icon size={18} icon="account" />
-                <Text style={{ color: "white" }}>{trade}</Text>
+              <View
+                key={i}
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  marginBottom: 8,
+                }}
+              >
+                <Avatar.Icon
+                  style={{ marginRight: 5 }}
+                  size={22}
+                  icon="account"
+                />
+                <Text style={{ color: "white", fontWeight: "bold" }}>
+                  {trade.traderName}{" "}
+                </Text>
+                <Text style={{ color: "white" }}>{trade.trade}</Text>
               </View>
             ))}
           </View>
