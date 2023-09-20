@@ -142,7 +142,24 @@ export default function MarketView() {
             {mockProps.comments.map((comment, i) => (
               <Card key={i} style={styles.comment}>
                 <Card.Content>
-                  <Text variant="bodyMedium">{comment}</Text>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      marginBottom: 5,
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <View style={{ flexDirection: "row" }}>
+                      <Avatar.Icon
+                        style={{ marginRight: 10 }}
+                        size={18}
+                        icon="account"
+                      />
+                      <Text>{comment.authorName}</Text>
+                    </View>
+                    <Text>{comment.date}</Text>
+                  </View>
+                  <Text variant="bodyMedium">{comment.comment}</Text>
                 </Card.Content>
               </Card>
             ))}
@@ -152,11 +169,9 @@ export default function MarketView() {
         {value === "trades" && (
           <View>
             {mockProps.trades.map((trade, i) => (
-              <View>
+              <View key={i} style={{ flexDirection: "row" }}>
                 <Avatar.Icon size={18} icon="account" />
-                <Text style={{ color: "white" }} key={i}>
-                  {trade}
-                </Text>
+                <Text style={{ color: "white" }}>{trade}</Text>
               </View>
             ))}
           </View>
