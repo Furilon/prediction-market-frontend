@@ -1,7 +1,13 @@
 import { useLocalSearchParams } from "expo-router";
-import { View, StyleSheet } from "react-native";
+import { ScrollView, View, StyleSheet } from "react-native";
 import { useState } from "react";
-import { Text, SegmentedButtons, Avatar, IconButton } from "react-native-paper";
+import {
+  Text,
+  SegmentedButtons,
+  Avatar,
+  IconButton,
+  Card,
+} from "react-native-paper";
 import Constants from "expo-constants";
 import { MarketPageViewProps } from "../../types/markets";
 import Icon from "react-native-paper/lib/typescript/components/Icon";
@@ -34,7 +40,7 @@ export default function MarketView() {
   const [value, setValue] = useState("comments");
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Text style={{ color: "white" }}>Market {local.id}</Text>
 
       <Text variant="headlineSmall" style={styles.question}>
@@ -57,6 +63,7 @@ export default function MarketView() {
               {mockProps.numberOfTraders}
             </Text>
           </View>
+
           <Text variant="bodySmall" style={styles.closingDate}>
             Closes on {mockProps.closingDate}
           </Text>
@@ -92,9 +99,13 @@ export default function MarketView() {
         {value === "comments" && (
           <View>
             {mockProps.comments.map((comment, i) => (
-              <Text variant="bodyMedium" style={{ color: "white" }} key={i}>
-                {comment}
-              </Text>
+              <Card style={styles.comment}>
+                <Card.Content>
+                  <Text variant="bodyMedium" key={i}>
+                    {comment}
+                  </Text>
+                </Card.Content>
+              </Card>
             ))}
           </View>
         )}
@@ -119,7 +130,7 @@ export default function MarketView() {
           </View>
         )}
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -169,6 +180,9 @@ const styles = StyleSheet.create({
   trade: {},
   commentArea: {
     marginVertical: 20,
+  },
+  comment: {
+    marginBottom: 10,
   },
   segmentedButtons: {
     marginBottom: 10,
