@@ -21,5 +21,17 @@ export type MarketPageViewProps = {
   description: string;
   comments: string[];
   trades: string[];
-  positions: string[];
+  positions: TradePosition[];
 };
+
+export type TradePosition = {
+  // avatar: Avatar.Icon;
+  authorName: string;
+  totalPosition: number;
+  positionType: TradePositionType;
+};
+
+export enum TradePositionType {
+  YES,
+  NO,
+}
