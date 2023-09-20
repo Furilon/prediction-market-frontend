@@ -13,7 +13,7 @@ export type MarketFullCardProps = {
 export type MarketPageViewProps = {
   id: number;
   question: string;
-  //   avatar: Avatar.Icon;
+  // avatar: Avatar.Icon;
   closingDate: string;
   authorName: string;
   price: number;

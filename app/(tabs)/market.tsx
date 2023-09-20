@@ -1,10 +1,11 @@
 import { useLocalSearchParams } from "expo-router";
-import { Text, View, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { useState } from "react";
 import {
-  Text as RNPText,
+  Text,
   SegmentedButtons,
   SegmentedButtonsProps,
+  Avatar,
 } from "react-native-paper";
 import Constants from "expo-constants";
 import { MarketPageViewProps } from "../../types/markets";
@@ -14,6 +15,7 @@ const mockProps: MarketPageViewProps = {
   question: "Will the price of Bitcoin be above $100,000 on December 31, 2022?",
   closingDate: "Sep 30",
   authorName: "John Doe",
+  //   avatar: <Avatar.Icon size={24} icon="account" />,
   price: 45,
   numberOfTraders: 100,
   description:
@@ -39,9 +41,15 @@ export default function MarketView() {
     <View style={styles.container}>
       <Text style={{ color: "white" }}>Market {local.id}</Text>
 
-      <Text style={{ color: "white" }}>{mockProps.question}</Text>
+      <Text variant="headlineSmall" style={styles.question}>
+        {mockProps.question}
+      </Text>
+
+      <View style={styles.avatarAndName}>
+        <Avatar.Icon style={styles.avatar} size={24} icon="account" />
+        <Text style={styles.authorName}>{mockProps.authorName}</Text>
+      </View>
       <Text style={{ color: "white" }}>{mockProps.closingDate}</Text>
-      <Text style={{ color: "white" }}>{mockProps.authorName}</Text>
       <Text style={{ color: "white" }}>{mockProps.price}</Text>
       <Text style={{ color: "white" }}>{mockProps.description}</Text>
       <Text style={{ color: "white" }}>{mockProps.numberOfTraders}</Text>
@@ -91,24 +99,6 @@ export default function MarketView() {
           ))}
         </View>
       )}
-
-      {/* {mockProps.comments.map((comment, i) => (
-        <Text style={{ color: "white" }} key={i}>
-          {comment}
-        </Text>
-      ))}
-      <Text style={{ color: "white" }}>{mockProps.trades.length}</Text>
-      {mockProps.trades.map((trade, i) => (
-        <Text style={{ color: "white" }} key={i}>
-          {trade}
-        </Text>
-      ))}
-      <Text style={{ color: "white" }}>{mockProps.positions.length}</Text>
-      {mockProps.positions.map((position, i) => (
-        <Text style={{ color: "white" }} key={i}>
-          {position}
-        </Text>
-      ))} */}
     </View>
   );
 }
@@ -117,9 +107,27 @@ const styles = StyleSheet.create({
   container: {
     marginTop: Constants.statusBarHeight + 5,
     color: "white",
+    marginHorizontal: 20,
   },
-  question: {},
-  authorName: {},
+  question: {
+    color: "white",
+    marginVertical: 10,
+    fontWeight: "bold",
+  },
+  avatarAndName: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 15,
+  },
+  avatar: {
+    marginRight: 10,
+  },
+  authorName: {
+    color: "#DEDEDE",
+  },
   price: {},
   description: {},
+  comment: {},
+  position: {},
+  trade: {},
 });
