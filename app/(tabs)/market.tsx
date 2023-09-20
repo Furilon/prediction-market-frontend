@@ -22,10 +22,31 @@ const mockProps: MarketPageViewProps = {
   description:
     "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
   comments: [
-    "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
-    "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
-    "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
-    "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
+    {
+      authorName: "John Doe",
+      comment:
+        "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
+      date: "1d",
+    },
+    {
+      authorName: "Nikita Medvediev",
+      comment:
+        "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
+      date: "1d",
+    },
+
+    {
+      authorName: "Fuck you",
+      comment:
+        "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
+      date: "1d",
+    },
+    {
+      authorName: "No Name Bitch",
+      comment:
+        "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
+      date: "1d",
+    },
   ],
   trades: [
     "traded 30 shares of YES for 0.30",
@@ -131,9 +152,12 @@ export default function MarketView() {
         {value === "trades" && (
           <View>
             {mockProps.trades.map((trade, i) => (
-              <Text style={{ color: "white" }} key={i}>
-                {trade}
-              </Text>
+              <View>
+                <Avatar.Icon size={18} icon="account" />
+                <Text style={{ color: "white" }} key={i}>
+                  {trade}
+                </Text>
+              </View>
             ))}
           </View>
         )}
