@@ -45,11 +45,15 @@ export default function MarketView() {
         {mockProps.question}
       </Text>
 
-      <View style={styles.avatarAndName}>
-        <Avatar.Icon style={styles.avatar} size={24} icon="account" />
-        <Text style={styles.authorName}>{mockProps.authorName}</Text>
+      <View style={styles.authorAndClosingDate}>
+        <View style={styles.avatarAndName}>
+          <Avatar.Icon style={styles.avatar} size={24} icon="account" />
+          <Text style={styles.authorName}>{mockProps.authorName}</Text>
+        </View>
+        <Text style={styles.closingDate}>
+          Closes on {mockProps.closingDate}
+        </Text>
       </View>
-      <Text style={{ color: "white" }}>{mockProps.closingDate}</Text>
       <Text style={{ color: "white" }}>{mockProps.price}</Text>
       <Text style={{ color: "white" }}>{mockProps.description}</Text>
       <Text style={{ color: "white" }}>{mockProps.numberOfTraders}</Text>
@@ -117,6 +121,11 @@ const styles = StyleSheet.create({
   avatarAndName: {
     flexDirection: "row",
     alignItems: "center",
+  },
+  authorAndClosingDate: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginBottom: 15,
   },
   avatar: {
@@ -125,6 +134,7 @@ const styles = StyleSheet.create({
   authorName: {
     color: "#DEDEDE",
   },
+  closingDate: {},
   price: {},
   description: {},
   comment: {},
