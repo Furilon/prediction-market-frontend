@@ -105,7 +105,7 @@ export default function MarketView() {
 
         <View style={styles.dataAndTraders}>
           <View style={styles.tradersUnit}>
-            <IconButton icon="account" size={18} />
+            <IconButton disabled icon="account" size={18} />
             <Text style={{ marginLeft: -10 }} variant="bodySmall">
               {mockProps.numberOfTraders}
             </Text>
