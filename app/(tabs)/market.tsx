@@ -225,6 +225,7 @@ export default function MarketView() {
                   )
                   .map((position, i) => (
                     <View
+                      key={i}
                       style={{
                         flexDirection: "row",
                         justifyContent: "center",
@@ -262,6 +263,7 @@ export default function MarketView() {
                   )
                   .map((position, i) => (
                     <View
+                      key={i}
                       style={{
                         flexDirection: "row",
                         justifyContent: "center",
