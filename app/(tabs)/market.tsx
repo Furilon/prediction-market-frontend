@@ -1,14 +1,10 @@
 import { useLocalSearchParams } from "expo-router";
 import { View, StyleSheet } from "react-native";
 import { useState } from "react";
-import {
-  Text,
-  SegmentedButtons,
-  SegmentedButtonsProps,
-  Avatar,
-} from "react-native-paper";
+import { Text, SegmentedButtons, Avatar, IconButton } from "react-native-paper";
 import Constants from "expo-constants";
 import { MarketPageViewProps } from "../../types/markets";
+import Icon from "react-native-paper/lib/typescript/components/Icon";
 
 const mockProps: MarketPageViewProps = {
   id: 12456,
@@ -45,24 +41,39 @@ export default function MarketView() {
         {mockProps.question}
       </Text>
 
+      {/* Author row */}
       <View style={styles.authorAndClosingDate}>
         <View style={styles.avatarAndName}>
           <Avatar.Icon style={styles.avatar} size={24} icon="account" />
-          <Text style={styles.authorName}>{mockProps.authorName}</Text>
+          <Text variant="bodySmall" style={styles.authorName}>
+            {mockProps.authorName}
+          </Text>
         </View>
-        <Text style={styles.closingDate}>
-          Closes on {mockProps.closingDate}
-        </Text>
+
+        <View style={styles.dataAndTraders}>
+          <View style={styles.tradersUnit}>
+            <IconButton icon="account" size={18} />
+            <Text style={{ marginLeft: -10 }} variant="bodySmall">
+              {mockProps.numberOfTraders}
+            </Text>
+          </View>
+          <Text variant="bodySmall" style={styles.closingDate}>
+            Closes on {mockProps.closingDate}
+          </Text>
+        </View>
       </View>
+
       <Text style={{ color: "white" }}>{mockProps.price}</Text>
-      <Text style={{ color: "white" }}>{mockProps.description}</Text>
-      <Text style={{ color: "white" }}>{mockProps.numberOfTraders}</Text>
+      <Text variant="bodyMedium" style={{ color: "white" }}>
+        {mockProps.description}
+      </Text>
 
       {/* 
         Bottom area for comments, trades, and positions
       */}
-      <View>
+      <View style={styles.commentArea}>
         <SegmentedButtons
+          style={styles.segmentedButtons}
           value={value}
           onValueChange={setValue}
           buttons={[
@@ -81,7 +92,7 @@ export default function MarketView() {
         {value === "comments" && (
           <View>
             {mockProps.comments.map((comment, i) => (
-              <Text style={{ color: "white" }} key={i}>
+              <Text variant="bodyMedium" style={{ color: "white" }} key={i}>
                 {comment}
               </Text>
             ))}
@@ -133,16 +144,33 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 15,
   },
+  dataAndTraders: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  tradersUnit: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginRight: 10,
+  },
   avatar: {
     marginRight: 10,
   },
   authorName: {
     color: "#DEDEDE",
   },
-  closingDate: {},
+  closingDate: {
+    marginLeft: 25,
+  },
   price: {},
   description: {},
   comment: {},
   position: {},
   trade: {},
+  commentArea: {
+    marginVertical: 20,
+  },
+  segmentedButtons: {
+    marginBottom: 10,
+  },
 });
