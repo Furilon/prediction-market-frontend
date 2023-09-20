@@ -61,48 +61,53 @@ export default function MarketView() {
       {/* 
         Bottom area for comments, trades, and positions
       */}
-      <SegmentedButtons
-        value={value}
-        onValueChange={setValue}
-        buttons={[
-          { label: "Comments", value: "comments" },
-          { label: "Trades", value: "trades" },
-          { label: "Positions", value: "positions" },
-        ]}
-      />
+      <View>
+        <SegmentedButtons
+          value={value}
+          onValueChange={setValue}
+          buttons={[
+            {
+              label: `${mockProps.comments.length} comments`,
+              value: "comments",
+            },
+            { label: `${mockProps.trades.length} trades`, value: "trades" },
+            {
+              label: `${mockProps.positions.length} positions`,
+              value: "positions",
+            },
+          ]}
+        />
 
-      {value === "comments" && (
-        <View>
-          <Text style={{ color: "white" }}>{mockProps.comments.length}</Text>
-          {mockProps.comments.map((comment, i) => (
-            <Text style={{ color: "white" }} key={i}>
-              {comment}
-            </Text>
-          ))}
-        </View>
-      )}
+        {value === "comments" && (
+          <View>
+            {mockProps.comments.map((comment, i) => (
+              <Text style={{ color: "white" }} key={i}>
+                {comment}
+              </Text>
+            ))}
+          </View>
+        )}
 
-      {value === "trades" && (
-        <View>
-          <Text style={{ color: "white" }}>{mockProps.trades.length}</Text>
-          {mockProps.trades.map((trade, i) => (
-            <Text style={{ color: "white" }} key={i}>
-              {trade}
-            </Text>
-          ))}
-        </View>
-      )}
+        {value === "trades" && (
+          <View>
+            {mockProps.trades.map((trade, i) => (
+              <Text style={{ color: "white" }} key={i}>
+                {trade}
+              </Text>
+            ))}
+          </View>
+        )}
 
-      {value === "positions" && (
-        <View>
-          <Text style={{ color: "white" }}>{mockProps.positions.length}</Text>
-          {mockProps.positions.map((position, i) => (
-            <Text style={{ color: "white" }} key={i}>
-              {position}
-            </Text>
-          ))}
-        </View>
-      )}
+        {value === "positions" && (
+          <View>
+            {mockProps.positions.map((position, i) => (
+              <Text style={{ color: "white" }} key={i}>
+                {position}
+              </Text>
+            ))}
+          </View>
+        )}
+      </View>
     </View>
   );
 }
