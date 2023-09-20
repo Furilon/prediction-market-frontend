@@ -1,11 +1,11 @@
 import { StyleSheet } from "react-native";
-import { View, Text } from "react-native";
+import { ScrollView, View, Text } from "react-native";
 import MarketFullCard from "../../components/MarketFullCard";
 import Constants from "expo-constants";
 
 export default function Home() {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <MarketFullCard
         id={12456}
         price={45}
@@ -33,12 +33,15 @@ export default function Home() {
         numberOfTraders={1234}
         numberOfComments={24}
       />
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: Constants.statusBarHeight + 3,
+    marginTop: Constants.statusBarHeight + 5,
+    color: "white",
+    marginHorizontal: 20,
+    flexDirection: "column",
   },
 });
