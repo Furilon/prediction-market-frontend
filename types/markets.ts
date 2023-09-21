@@ -10,6 +10,14 @@ export type MarketFullCardProps = {
   numberOfComments: number;
 };
 
+export type MarketShortCardProps = {
+  id: number;
+  question: string;
+  // avatar: Avatar.Icon;
+  numberOfTraders: number;
+  price: number;
+};
+
 export type MarketPageViewProps = {
   id: number;
   question: string;
