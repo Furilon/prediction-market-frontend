@@ -3,7 +3,6 @@ import { Avatar } from "react-native-paper";
 export type MarketFullCardProps = {
   id: number;
   question: string;
-  //   avatar: Avatar.Icon;
   authorName: string;
   price: number;
   numberOfTraders: number;
@@ -12,7 +11,6 @@ export type MarketFullCardProps = {
 export type MarketPageViewProps = {
   id: number;
   question: string;
-  // avatar: Avatar.Icon;
   closingDate: string;
   authorName: string;
   price: number;
@@ -24,7 +22,6 @@ export type MarketPageViewProps = {
 };
 
 export type TradePosition = {
-  // avatar: Avatar.Icon;
   authorName: string;
   totalPosition: number;
   positionType: TradePositionType;
@@ -36,14 +33,12 @@ export enum TradePositionType {
 }
 
 export type Trade = {
-  // avatar: Avatar.Icon;
   traderName: string;
   // This is gonna have to be much more complex than this
   trade: string;
 };
 
 export type Comment = {
-  // avatar: Avatar.Icon;
   authorName: string;
   comment: string;
   date: string;
