@@ -47,26 +47,6 @@ export default function RootLayout() {
     }
   }, [loaded]);
 
-  // useEffect(() => {
-  //   const handleAppStateChange = (newState: any) => {
-  //     if (newState === "background" || newState === "inactive") {
-  //       // The app is going into the background or being terminated
-  //       clearToken();
-  //     }
-  //   };
-
-  //   // Add an AppState change listener
-  //   const appStateSubscription = AppState.addEventListener(
-  //     "change",
-  //     handleAppStateChange
-  //   );
-
-  //   // Clean up the subscription when the component unmounts
-  //   return () => {
-  //     appStateSubscription.remove();
-  //   };
-  // }, []);
-
   if (!loaded) {
     return null;
   }
