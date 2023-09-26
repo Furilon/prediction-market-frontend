@@ -9,6 +9,8 @@ import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import { useColorScheme } from "react-native";
 import { PaperProvider } from "react-native-paper";
+import clearToken from "../services/clearToken";
+import { AppState } from "react-native";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -17,7 +19,12 @@ export {
 
 export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: "(tabs)",
+  tabs: {
+    initialRouteName: "index",
+  },
+  auth: {
+    initialRouteName: "login",
+  },
 };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -40,6 +47,26 @@ export default function RootLayout() {
     }
   }, [loaded]);
 
+  // useEffect(() => {
+  //   const handleAppStateChange = (newState: any) => {
+  //     if (newState === "background" || newState === "inactive") {
+  //       // The app is going into the background or being terminated
+  //       clearToken();
+  //     }
+  //   };
+
+  //   // Add an AppState change listener
+  //   const appStateSubscription = AppState.addEventListener(
+  //     "change",
+  //     handleAppStateChange
+  //   );
+
+  //   // Clean up the subscription when the component unmounts
+  //   return () => {
+  //     appStateSubscription.remove();
+  //   };
+  // }, []);
+
   if (!loaded) {
     return null;
   }
@@ -55,6 +82,7 @@ function RootLayoutNav() {
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
         </Stack>
       </ThemeProvider>
     </PaperProvider>
