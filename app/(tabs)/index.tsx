@@ -3,9 +3,9 @@ import { ScrollView, View, Text } from "react-native";
 import MarketFullCard from "../../components/MarketFullCard";
 import Constants from "expo-constants";
 import { useState, useEffect } from "react";
-import isToken from "../../services/isToken";
+import isToken from "../../utils/isToken";
 import { Redirect } from "expo-router";
-import getMarkets from "../../services/getMarkets";
+import getMarkets from "../../utils/getMarkets";
 import { MarketFullCardProps } from "../../types/markets";
 
 export default function Home() {
@@ -37,6 +37,11 @@ export default function Home() {
 
   return (
     <ScrollView style={styles.container}>
+      {/* {
+        markets.map((market) => (
+
+      } */}
+
       <MarketFullCard
         id={12456}
         price={45}

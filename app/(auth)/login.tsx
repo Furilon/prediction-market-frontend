@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { TextInput, Button, Text } from "react-native-paper";
 import { View } from "react-native";
 import { UserAuthInfo } from "../../types/auth";
-import authenticate from "../../services/authenticate";
+import authenticate from "../../utils/authenticate";
 import { Redirect, useRouter } from "expo-router";
 
 export default function Login() {

@@ -9,7 +9,7 @@ import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import { useColorScheme } from "react-native";
 import { PaperProvider } from "react-native-paper";
-import clearToken from "../services/clearToken";
+import clearToken from "../utils/clearToken";
 import { AppState } from "react-native";
 
 export {

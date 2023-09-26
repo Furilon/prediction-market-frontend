@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { TextInput, Button, Text } from "react-native-paper";
 import { View } from "react-native";
 import { UserRegisterInfo } from "../../types/auth";
-import register from "../../services/register";
+import register from "../../utils/register";
 import { useRouter } from "expo-router"; // Import useRouter instead of useNavigation
 
 export default function Register(): React.ReactElement {
