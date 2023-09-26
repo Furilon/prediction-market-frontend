@@ -11,12 +11,15 @@ import {
 import Constants from "expo-constants";
 import { MarketPageViewProps, TradePositionType } from "../../types/markets";
 
+import Comment from "../../components/Comment";
+import MarketTradeItem from "../../components/MarketTradeItem";
+import PositionsHalf from "../../components/PositionsHalf";
+
 const mockProps: MarketPageViewProps = {
   id: 12456,
   question: "Will the price of Bitcoin be above $100,000 on December 31, 2022?",
   closingDate: "Sep 30",
   authorName: "John Doe",
-  //   avatar: <Avatar.Icon size={24} icon="account" />,
   price: 45,
   numberOfTraders: 100,
   description:
@@ -146,28 +149,12 @@ export default function MarketView() {
         {value === "comments" && (
           <View>
             {mockProps.comments.map((comment, i) => (
-              <Card key={i} style={styles.comment}>
-                <Card.Content>
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      marginBottom: 5,
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <View style={{ flexDirection: "row" }}>
-                      <Avatar.Icon
-                        style={{ marginRight: 10 }}
-                        size={18}
-                        icon="account"
-                      />
-                      <Text>{comment.authorName}</Text>
-                    </View>
-                    <Text>{comment.date}</Text>
-                  </View>
-                  <Text variant="bodyMedium">{comment.comment}</Text>
-                </Card.Content>
-              </Card>
+              <Comment
+                i={i}
+                comment={comment.comment}
+                data={comment.date}
+                authorName={comment.authorName}
+              />
             ))}
           </View>
         )}
@@ -175,24 +162,11 @@ export default function MarketView() {
         {value === "trades" && (
           <View>
             {mockProps.trades.map((trade, i) => (
-              <View
-                key={i}
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  marginBottom: 8,
-                }}
-              >
-                <Avatar.Icon
-                  style={{ marginRight: 5 }}
-                  size={22}
-                  icon="account"
-                />
-                <Text style={{ color: "white", fontWeight: "bold" }}>
-                  {trade.traderName}{" "}
-                </Text>
-                <Text style={{ color: "white" }}>{trade.trade}</Text>
-              </View>
+              <MarketTradeItem
+                i={i}
+                trade={trade.trade}
+                traderName={trade.traderName}
+              />
             ))}
           </View>
         )}
@@ -206,82 +180,14 @@ export default function MarketView() {
                 justifyContent: "space-evenly",
               }}
             >
-              <View
-                style={{ flexDirection: "column", alignItems: "flex-start" }}
-              >
-                <Text style={{ marginBottom: 10 }}>
-                  {
-                    mockProps.positions.filter(
-                      (position) =>
-                        position.positionType === TradePositionType.YES
-                    ).length
-                  }{" "}
-                  YES payouts
-                </Text>
-                {mockProps.positions
-                  .filter(
-                    (position) =>
-                      position.positionType === TradePositionType.YES
-                  )
-                  .map((position, i) => (
-                    <View
-                      key={i}
-                      style={{
-                        flexDirection: "row",
-                        justifyContent: "center",
-                        marginVertical: 5,
-                      }}
-                    >
-                      <Avatar.Icon
-                        style={{ marginRight: 10 }}
-                        size={18}
-                        icon="account"
-                      />
-                      <Text style={{ color: "white", marginRight: 10 }} key={i}>
-                        {position.authorName}
-                      </Text>
-                      <Text>${position.totalPosition}</Text>
-                    </View>
-                  ))}
-              </View>
-
-              <View
-                style={{ flexDirection: "column", alignItems: "flex-start" }}
-              >
-                <Text style={{ marginBottom: 10 }}>
-                  {
-                    mockProps.positions.filter(
-                      (position) =>
-                        position.positionType === TradePositionType.NO
-                    ).length
-                  }{" "}
-                  NO payouts
-                </Text>
-                {mockProps.positions
-                  .filter(
-                    (position) => position.positionType === TradePositionType.NO
-                  )
-                  .map((position, i) => (
-                    <View
-                      key={i}
-                      style={{
-                        flexDirection: "row",
-                        justifyContent: "center",
-                        marginVertical: 5,
-                      }}
-                    >
-                      <Avatar.Icon
-                        style={{ marginRight: 10 }}
-                        size={18}
-                        icon="account"
-                      />
-                      <Text style={{ color: "white", marginRight: 10 }} key={i}>
-                        {position.authorName}
-                      </Text>
-                      <Text>${position.totalPosition}</Text>
-                    </View>
-                  ))}
-              </View>
+              <PositionsHalf
+                positions={mockProps.positions}
+                positionType={TradePositionType.YES}
+              />
+              <PositionsHalf
+                positions={mockProps.positions}
+                positionType={TradePositionType.NO}
+              />
             </View>
           </View>
         )}
@@ -329,15 +235,8 @@ const styles = StyleSheet.create({
   closingDate: {
     marginLeft: 25,
   },
-  price: {},
-  description: {},
-  position: {},
-  trade: {},
   commentArea: {
     marginVertical: 20,
-  },
-  comment: {
-    marginBottom: 10,
   },
   segmentedButtons: {
     marginBottom: 10,
