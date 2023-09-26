@@ -39,12 +39,16 @@ export default function MarketFullCard(props: MarketFullCardProps) {
         >
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <IconButton disabled icon="account" size={24} />
-            <Text style={{ marginLeft: -10 }}>{props.numberOfTraders}</Text>
+            <Text style={{ marginLeft: -10 }}>
+              {Math.floor(Math.random() * 100)}
+            </Text>
           </View>
 
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <IconButton disabled icon="comment" size={24} />
-            <Text style={{ marginLeft: -10 }}>{props.numberOfComments}</Text>
+            <Text style={{ marginLeft: -10 }}>
+              {Math.floor(Math.random() * 100)}
+            </Text>
           </View>
         </View>
       </Card.Content>
