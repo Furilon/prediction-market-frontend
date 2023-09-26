@@ -1,11 +1,11 @@
-export type UserAuthInfo = {
+export interface UserAuthInfo {
   username: string;
   password: string;
-};
+}
 
-export type UserRegisterInfo = {
+export interface UserRegisterInfo {
   firstName: string;
   lastName: string;
   username: string;
   password: string;
-};
+}
