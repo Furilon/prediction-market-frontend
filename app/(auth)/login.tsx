@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { TextInput, Button, Text } from "react-native-paper";
 import { View, StyleSheet } from "react-native";
 import { UserAuthInfo } from "../../types/auth";
@@ -6,6 +6,7 @@ import authenticate from "../../utils/authenticate";
 import { useRouter, Link } from "expo-router";
 import Constants from "expo-constants";
 import isToken from "../../utils/isToken";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function Login(): React.ReactElement {
   const [username, setUsername] = useState("");
@@ -15,22 +16,20 @@ export default function Login(): React.ReactElement {
   const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(true);
 
   const router = useRouter();
+  const { signIn } = useContext(AuthContext);
 
-  const handleLogin = (e: any) => {
-    e.preventDefault();
+  const handleLogin = () => {
     const payload = {
       username,
       password,
     } as UserAuthInfo;
 
-    authenticate(payload).then(() => {
-      router.push("/");
-    });
+    signIn(payload);
   };
 
   useEffect(() => {
     isToken().then((value) => (value ? router.push("/") : null));
-  });
+  }, []);
 
   useEffect(() => {
     if (username && password) {
@@ -38,7 +37,7 @@ export default function Login(): React.ReactElement {
     } else {
       setIsLoginButtonDisabled(true);
     }
-  });
+  }, [username, password]);
 
   return (
     <View style={styles.container}>
@@ -70,22 +69,21 @@ export default function Login(): React.ReactElement {
       <Button
         disabled={isLoginButtonDisabled}
         mode="contained"
-        onPress={(e) => handleLogin(e)}
+        onPress={handleLogin}
       >
         Log in
       </Button>
 
       {isErrorAuth && <Text>Incorrect username or password</Text>}
 
-      <Link style={{ marginTop: 20 }} href="/register" asChild>
-        <Button
-          mode="outlined"
-          icon="arrow-right"
-          contentStyle={{ flexDirection: "row-reverse" }}
-        >
-          Register
-        </Button>
-      </Link>
+      <Button
+        mode="outlined"
+        icon="arrow-right"
+        contentStyle={{ flexDirection: "row-reverse" }}
+        onPress={() => router.push("/register")}
+      >
+        Register
+      </Button>
     </View>
   );
 }

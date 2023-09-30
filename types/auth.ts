@@ -9,3 +9,9 @@ export interface UserRegisterInfo {
   username: string;
   password: string;
 }
+
+export type AuthContextType = {
+  signIn: (data: UserAuthInfo) => void;
+  signOut: () => void;
+  signUp: (data: UserRegisterInfo) => void;
+};

@@ -12,28 +12,28 @@ export default function Home() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [markets, setMarkets] = useState<MarketFullCardProps[]>([]);
 
-  useEffect(() => {
-    const isLoggedIn = async () => {
-      const token = await isToken();
-      if (!token) return;
-      setIsAuthenticated(true);
-    };
+  // useEffect(() => {
+  //   const isLoggedIn = async () => {
+  //     const token = await isToken();
+  //     if (!token) return;
+  //     setIsAuthenticated(true);
+  //   };
 
-    isLoggedIn();
-  }, []);
+  //   isLoggedIn();
+  // }, []);
 
-  useEffect(() => {
-    const getMarketsData = async () => {
-      const markets = await getMarkets();
-      setMarkets(markets);
-    };
+  // useEffect(() => {
+  //   const getMarketsData = async () => {
+  //     const markets = await getMarkets();
+  //     setMarkets(markets);
+  //   };
 
-    getMarketsData();
-  });
+  //   getMarketsData();
+  // });
 
-  if (!isAuthenticated) {
-    return <Redirect href="/login" />;
-  }
+  // if (!isAuthenticated) {
+  //   return <Redirect href="/login" />;
+  // }
 
   return (
     <ScrollView style={styles.container}>

@@ -1,6 +1,5 @@
 import { Card, Avatar, Text } from "react-native-paper";
 import { StyleSheet, View } from "react-native";
-import { Comment } from "../types/markets";
 
 export default function Comment({ ...props }) {
   return (

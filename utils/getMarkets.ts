@@ -1,8 +1,6 @@
 import getToken from "./getToken";
 
-export default async function getMarkets() {
-  const { token }: any = await getToken();
-
+export default async function getMarkets(token: string) {
   const response = await fetch("http://192.168.56.1:8080/markets", {
     method: "GET",
     headers: {

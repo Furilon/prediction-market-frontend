@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { TextInput, Button, Text } from "react-native-paper";
 import { View, StyleSheet } from "react-native";
 import { UserRegisterInfo } from "../../types/auth";
-import register from "../../utils/register";
 import { useRouter } from "expo-router";
 import Constants from "expo-constants";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function Register(): React.ReactElement {
   const [username, setUsername] = useState("");
@@ -17,6 +17,7 @@ export default function Register(): React.ReactElement {
   const [isErrorAuth, setIsErrorAuth] = useState(false);
 
   const router = useRouter();
+  const { signUp } = useContext(AuthContext);
 
   useEffect(() => {
     if (username && password && firstName && lastName) {
@@ -26,8 +27,7 @@ export default function Register(): React.ReactElement {
     }
   });
 
-  const handleRegister = (e: any) => {
-    e.preventDefault();
+  const handleRegister = async () => {
     const payload = {
       firstName,
       lastName,
@@ -35,13 +35,7 @@ export default function Register(): React.ReactElement {
       password,
     } as UserRegisterInfo;
 
-    register(payload).then((token) => {
-      if (token === undefined || token === null) {
-        setIsErrorAuth(true);
-      }
-
-      router.push("/");
-    });
+    signUp(payload);
   };
 
   return (
