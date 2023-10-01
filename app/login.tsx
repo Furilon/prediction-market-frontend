@@ -4,7 +4,6 @@ import { View, StyleSheet } from "react-native";
 import { UserAuthInfo } from "../types/auth";
 import { useRouter, Link } from "expo-router";
 import Constants from "expo-constants";
-import isToken from "../utils/isToken";
 import { useSession } from "../context/AuthContext";
 
 export default function Login(): React.ReactElement {
@@ -26,10 +25,6 @@ export default function Login(): React.ReactElement {
     signIn(payload);
     router.replace("/");
   };
-
-  useEffect(() => {
-    isToken().then((value) => (value ? router.push("/") : null));
-  }, []);
 
   useEffect(() => {
     if (username && password) {
