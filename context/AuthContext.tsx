@@ -35,22 +35,20 @@ export function SessionProvider(props: any) {
   return (
     <AuthContext.Provider
       value={{
-        signIn: ({ username, password }: UserAuthInfo) => {
+        signIn: (payload: UserAuthInfo) => {
           // Perform sign-in logic here
-
-          setSession("xxx");
+          authenticate(payload)
+            .then((token) => setSession(token))
+            .catch((err) => console.log(err));
         },
         signOut: () => {
           setSession(null);
         },
-        signUp: ({
-          username,
-          password,
-          firstName,
-          lastName,
-        }: UserRegisterInfo) => {
+        signUp: (payload: UserRegisterInfo) => {
           // Perform sign-up logic here
-          setSession("xxx");
+          register(payload)
+            .then((token) => setSession(token))
+            .catch((err) => console.log(err));
         },
         session,
         isLoading,
