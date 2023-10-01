@@ -1,50 +1,59 @@
-import { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { TextInput, Button, Text } from "react-native-paper";
 import { View, StyleSheet } from "react-native";
-import { UserAuthInfo } from "../../types/auth";
-import authenticate from "../../utils/authenticate";
-import { useRouter, Link } from "expo-router";
+import { UserRegisterInfo } from "../types/auth";
+import { useRouter } from "expo-router";
 import Constants from "expo-constants";
-import isToken from "../../utils/isToken";
-import { AuthContext } from "../../context/AuthContext";
 
-export default function Login(): React.ReactElement {
+export default function Register(): React.ReactElement {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [isErrorAuth, setIsErrorAuth] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [isPassShown, setIsPassShown] = useState(false);
-  const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(true);
+  const [isRegisterButtonDisabled, setIsRegisterButtonDisabled] =
+    useState(true);
+  const [isErrorAuth, setIsErrorAuth] = useState(false);
 
   const router = useRouter();
-  const { signIn } = useContext(AuthContext);
 
-  const handleLogin = () => {
+  useEffect(() => {
+    if (username && password && firstName && lastName) {
+      setIsRegisterButtonDisabled(false);
+    } else {
+      setIsRegisterButtonDisabled(true);
+    }
+  });
+
+  const handleRegister = async () => {
     const payload = {
+      firstName,
+      lastName,
       username,
       password,
-    } as UserAuthInfo;
+    } as UserRegisterInfo;
 
-    signIn(payload);
+    // signUp(payload);
   };
-
-  useEffect(() => {
-    isToken().then((value) => (value ? router.push("/") : null));
-  }, []);
-
-  useEffect(() => {
-    if (username && password) {
-      setIsLoginButtonDisabled(false);
-    } else {
-      setIsLoginButtonDisabled(true);
-    }
-  }, [username, password]);
 
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
         <Text style={styles.title} variant="titleLarge">
-          Log in
+          Register
         </Text>
+        <TextInput
+          mode="outlined"
+          label="First Name"
+          value={firstName}
+          onChangeText={(text) => setFirstName(text)}
+        />
+        <TextInput
+          mode="outlined"
+          label="Last Name"
+          value={lastName}
+          onChangeText={(text) => setLastName(text)}
+        />
         <TextInput
           mode="outlined"
           label="Username"
@@ -65,25 +74,15 @@ export default function Login(): React.ReactElement {
           }
         />
       </View>
-
       <Button
-        disabled={isLoginButtonDisabled}
+        disabled={isRegisterButtonDisabled}
         mode="contained"
-        onPress={handleLogin}
+        onPress={handleRegister}
       >
-        Log in
+        Sign up
       </Button>
 
-      {isErrorAuth && <Text>Incorrect username or password</Text>}
-
-      <Button
-        mode="outlined"
-        icon="arrow-right"
-        contentStyle={{ flexDirection: "row-reverse" }}
-        onPress={() => router.push("/register")}
-      >
-        Register
-      </Button>
+      {isErrorAuth && <Text>Error with registering</Text>}
     </View>
   );
 }

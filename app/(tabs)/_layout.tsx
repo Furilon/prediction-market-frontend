@@ -1,25 +1,22 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import TabBarIcon from "../../components/TabBarIcon";
 import { Redirect, Tabs } from "expo-router";
 import { useState, useEffect } from "react";
 import isToken from "../../utils/isToken";
-
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>["name"];
-}) {
-  return (
-    <FontAwesome
-      size={28}
-      color="white"
-      style={{ marginBottom: -3 }}
-      {...props}
-    />
-  );
-}
+import { useSession } from "../../context/AuthContext";
+import { Text } from "react-native-paper";
 
 export default function TabLayout() {
+  const { session, isLoading } = useSession();
+
+  if (isLoading) {
+    return <Text>Loading...</Text>;
+  }
+
+  if (!session) {
+    return <Redirect href="/login" />;
+  }
+
   return (
     <Tabs
       screenOptions={{
