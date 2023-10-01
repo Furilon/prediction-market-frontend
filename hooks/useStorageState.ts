@@ -1,4 +1,4 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as SecureStore from "expo-secure-store";
 import * as React from "react";
 import { Platform } from "react-native";
 
@@ -29,9 +29,9 @@ export async function setStorageItemAsync(key: string, value: string | null) {
     }
   } else {
     if (value == null) {
-      await AsyncStorage.removeItem(key);
+      await SecureStore.deleteItemAsync(key);
     } else {
-      await AsyncStorage.setItem(key, value);
+      await SecureStore.setItemAsync(key, value);
     }
   }
 }
@@ -51,7 +51,7 @@ export function useStorageState(key: string): UseStateHook<string> {
         console.error("Local storage is unavailable:", e);
       }
     } else {
-      AsyncStorage.getItem(key).then((value) => {
+      SecureStore.getItemAsync(key).then((value) => {
         setState(value);
       });
     }
