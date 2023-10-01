@@ -91,7 +91,7 @@ export default function MarketView() {
 
   return (
     <ScrollView style={styles.container}>
-      <Text style={{ color: "white" }}>Market {local.id}</Text>
+      <Text>Market {local.id}</Text>
 
       <Text variant="headlineSmall" style={styles.question}>
         {mockProps.question}
@@ -121,9 +121,7 @@ export default function MarketView() {
       </View>
 
       <Text style={{ color: "white" }}>{mockProps.price}</Text>
-      <Text variant="bodyMedium" style={{ color: "white" }}>
-        {mockProps.description}
-      </Text>
+      <Text variant="bodyMedium">{mockProps.description}</Text>
 
       {/* 
         Bottom area for comments, trades, and positions
@@ -199,11 +197,9 @@ export default function MarketView() {
 const styles = StyleSheet.create({
   container: {
     marginTop: Constants.statusBarHeight + 5,
-    color: "white",
     marginHorizontal: 20,
   },
   question: {
-    color: "white",
     marginVertical: 10,
     fontWeight: "bold",
   },
@@ -230,7 +226,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   authorName: {
-    color: "#DEDEDE",
+    color: "#AAAAAA",
   },
   closingDate: {
     marginLeft: 25,

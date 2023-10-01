@@ -29,7 +29,7 @@ export default function PositionsHalf({ ...props }) {
             }}
           >
             <Avatar.Icon style={{ marginRight: 10 }} size={18} icon="account" />
-            <Text style={{ color: "white", marginRight: 10 }} key={i}>
+            <Text style={{ marginRight: 10 }} key={i}>
               {position.authorName}
             </Text>
             <Text>${position.totalPosition}</Text>

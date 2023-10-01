@@ -13,7 +13,7 @@ export default function MarketFullCard(props: MarketFullCardProps) {
       <Card.Content>
         <View style={{ flexDirection: "row", marginBottom: 10 }}>
           <Avatar.Icon style={{ marginRight: 10 }} size={22} icon="account" />
-          <Text style={{ color: "#DEDEDE" }} variant="titleSmall">
+          <Text style={{ color: "#AAAAAA" }} variant="titleSmall">
             {props.authorName}
           </Text>
         </View>

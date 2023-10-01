@@ -12,10 +12,8 @@ export default function MarketTradeItem({ ...props }) {
       }}
     >
       <Avatar.Icon style={{ marginRight: 5 }} size={22} icon="account" />
-      <Text style={{ color: "white", fontWeight: "bold" }}>
-        {props.traderName}{" "}
-      </Text>
-      <Text style={{ color: "white" }}>{props.trade}</Text>
+      <Text style={{ fontWeight: "bold" }}>{props.traderName} </Text>
+      <Text>{props.trade}</Text>
     </View>
   );
 }
