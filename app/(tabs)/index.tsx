@@ -3,37 +3,11 @@ import { ScrollView, View, Text } from "react-native";
 import MarketFullCard from "../../components/MarketFullCard";
 import Constants from "expo-constants";
 import { useState, useEffect } from "react";
-import isToken from "../../utils/isToken";
-import { Redirect } from "expo-router";
 import getMarkets from "../../utils/getMarkets";
 import { MarketFullCardProps } from "../../types/markets";
 
 export default function Home() {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [markets, setMarkets] = useState<MarketFullCardProps[]>([]);
-
-  // useEffect(() => {
-  //   const isLoggedIn = async () => {
-  //     const token = await isToken();
-  //     if (!token) return;
-  //     setIsAuthenticated(true);
-  //   };
-
-  //   isLoggedIn();
-  // }, []);
-
-  // useEffect(() => {
-  //   const getMarketsData = async () => {
-  //     const markets = await getMarkets();
-  //     setMarkets(markets);
-  //   };
-
-  //   getMarketsData();
-  // });
-
-  // if (!isAuthenticated) {
-  //   return <Redirect href="/login" />;
-  // }
 
   return (
     <ScrollView style={styles.container}>
