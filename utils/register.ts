@@ -1,5 +1,4 @@
 import { UserRegisterInfo } from "../types/auth";
-import setToken from "./setToken";
 
 export default async function register(payload: UserRegisterInfo) {
   const response = await fetch("http://192.168.56.1:8080/auth/register", {
