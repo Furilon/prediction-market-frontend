@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { TextInput, Button, Text } from "react-native-paper";
 import { View, StyleSheet } from "react-native";
 import { UserAuthInfo } from "../types/auth";
-import { useRouter, Link } from "expo-router";
+import { useRouter, Redirect } from "expo-router";
 import Constants from "expo-constants";
 import { useSession } from "../context/AuthContext";
 
@@ -14,15 +14,18 @@ export default function Login(): React.ReactElement {
   const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(true);
 
   const router = useRouter();
-  const { signIn } = useSession();
+  const { signIn, session } = useSession();
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     const payload = {
       username,
       password,
     } as UserAuthInfo;
 
-    signIn(payload);
+    console.log("Clicked sign in");
+    await signIn(payload);
+
+    console.log("routing to the home page");
     router.replace("/");
   };
 
@@ -33,6 +36,10 @@ export default function Login(): React.ReactElement {
       setIsLoginButtonDisabled(true);
     }
   }, [username, password]);
+
+  if (session) {
+    return <Redirect href="/" />;
+  }
 
   return (
     <View style={styles.container}>
@@ -76,7 +83,7 @@ export default function Login(): React.ReactElement {
         mode="outlined"
         icon="arrow-right"
         contentStyle={{ flexDirection: "row-reverse" }}
-        onPress={() => router.push("/register")}
+        onPress={() => router.replace("/register")}
       >
         Register
       </Button>

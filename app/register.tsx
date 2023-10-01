@@ -4,6 +4,7 @@ import { View, StyleSheet } from "react-native";
 import { UserRegisterInfo } from "../types/auth";
 import { useRouter } from "expo-router";
 import Constants from "expo-constants";
+import { useSession } from "../context/AuthContext";
 
 export default function Register(): React.ReactElement {
   const [username, setUsername] = useState("");
@@ -16,6 +17,7 @@ export default function Register(): React.ReactElement {
   const [isErrorAuth, setIsErrorAuth] = useState(false);
 
   const router = useRouter();
+  const { signUp } = useSession();
 
   useEffect(() => {
     if (username && password && firstName && lastName) {
@@ -33,7 +35,11 @@ export default function Register(): React.ReactElement {
       password,
     } as UserRegisterInfo;
 
-    // signUp(payload);
+    console.log("registering");
+    signUp(payload);
+
+    console.log("routing to the home page");
+    router.replace("/");
   };
 
   return (
