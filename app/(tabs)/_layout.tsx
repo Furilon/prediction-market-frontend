@@ -1,8 +1,5 @@
-import FontAwesome from "@expo/vector-icons/FontAwesome";
 import TabBarIcon from "../../components/TabBarIcon";
 import { Redirect, Tabs } from "expo-router";
-import { useState, useEffect } from "react";
-import isToken from "../../utils/isToken";
 import { useSession } from "../../context/AuthContext";
 import { Text } from "react-native-paper";
 
@@ -10,10 +7,12 @@ export default function TabLayout() {
   const { session, isLoading } = useSession();
 
   if (isLoading) {
+    console.log("loading");
     return <Text>Loading...</Text>;
   }
 
   if (!session) {
+    console.log("null session, redirecting to login");
     return <Redirect href="/login" />;
   }
 

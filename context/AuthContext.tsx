@@ -36,9 +36,13 @@ export function SessionProvider(props: any) {
     <AuthContext.Provider
       value={{
         signIn: (payload: UserAuthInfo) => {
+          console.log("Performing sign in from context func");
           // Perform sign-in logic here
           authenticate(payload)
-            .then((token) => setSession(token))
+            .then((token) => {
+              console.log("Got token: " + token);
+              setSession(token);
+            })
             .catch((err) => console.log(err));
         },
         signOut: () => {

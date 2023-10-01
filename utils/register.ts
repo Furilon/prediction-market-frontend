@@ -12,7 +12,8 @@ export default async function register(payload: UserRegisterInfo) {
   });
 
   const jsonObj = await response.json();
+  console.log(jsonObj);
   const token = jsonObj.token;
-
+  console.log(token);
   return token;
 }
